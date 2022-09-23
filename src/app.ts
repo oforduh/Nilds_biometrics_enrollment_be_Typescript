@@ -20,10 +20,9 @@ app.get("/status", (req, res) => {
 });
 
 app.use("/api", router);
+
 app.use(errorHandler);
 
 app.listen(port, () => {
   log.info(`App started on port ${port}`);
 });
-
-``;

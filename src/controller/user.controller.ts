@@ -1,12 +1,10 @@
 import { Request, Response } from "express";
+import { handleDuplicateError } from "../helper/handleDuplicateError";
 
-import { CreateUserInput } from "../schema/user.schema";
 import { newUser } from "../services/user.service";
 import log from "../utils/logger";
-export const createUser = async (
-  req: Request<{}, {}, CreateUserInput>,
-  res: Response
-) => {
+
+export const createUser = async (req: Request, res: Response) => {
   const body = req.body;
 
   try {
@@ -19,7 +17,7 @@ export const createUser = async (
     });
   } catch (error: any) {
     if (error.code === 11000) {
-      return res.status(409).send("Account already exists");
+      return handleDuplicateError(res, error);
     }
 
     res.status(500).send("Internal server error");
