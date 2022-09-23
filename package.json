@@ -2,11 +2,11 @@
   "name": "enrollment",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/app.ts",
-    "start": "node src/app.ts"
+    "start": "tsc -p . && node dist/src/app.js"
   },
   "keywords": [],
   "author": "",
